@@ -1,0 +1,89 @@
+// SPDX-License-Identifier: GPL-2.0
+/dts-v1/;
+
+/ {
+  #address-cells = <1>;
+  #size-cells = <1>;
+  interrupt-parent = <&irq_ctrl>;
+
+    aliases {
+        uart0 = &serial0;
+    };
+
+    chosen {
+        bootargs = "console=ttyUL0,1000000 debug";
+        linux,stdout-path = "uart0:1000000";
+    };    
+
+  cpus {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    timebase-frequency = <25000000>;
+    CPU0: cpu@0 {
+      device_type = "cpu";
+      reg = <0>;
+      status = "okay";
+      compatible = "riscv";
+      riscv,isa = "rv32ima";
+      mmu-type = "riscv,sv32";
+      clock-frequency = <25000000>;
+    };
+  };
+
+  memory@80000000 {
+      device_type = "memory";
+      reg = <0x80000000 0x1F00000>;
+  };
+
+  soc {
+    #address-cells = <1>;
+    #size-cells = <1>;
+    compatible = "simple-bus";
+    ranges;
+
+
+    irq_ctrl: interrupt-controller@90000000 {
+      #interrupt-cells = <0x1>;
+      compatible = "xlnx,xps-intc-1.00.a";
+      interrupt-controller ;
+      reg = < 0x90000000 0x10000 >;
+      xlnx,kind-of-intr = <0x100>;
+      xlnx,num-intr-inputs = <0x9>;
+    } ;
+
+    systick: timer@91000000 {
+      compatible = "riscv,openr5-timer";
+      reg = <0x91000000 0x10>;
+      clock-frequency = <25000000>;
+      interrupt-parent = <&irq_ctrl>;
+      interrupts = <0>;
+      interrupt-names = "timer";
+    };
+
+    serial0: serial@92000000 {
+      compatible = "xlnx,xps-uartlite-1.00.a";
+      current-speed = <1000000>;
+      device_type = "serial";
+      reg = <0x92000000 0x100>;
+      port-number = <0>;
+      clock-frequency = <25000000>;
+      interrupt-parent = <&irq_ctrl>;
+      interrupts = <1>;
+    };
+
+    spi0: xps-spi@93000000 {
+        compatible = "xlnx,xps-spi-2.00.b";
+        interrupt-parent = <&irq_ctrl>;
+        interrupts = <2>;
+        reg = < 0x93000000 0x1000 >;
+        xlnx,family = "virtex4";
+        xlnx,fifo-exist = <0x1>;
+        xlnx,num-ss-bits = <0x1>;
+        xlnx,num-transfer-bits = <0x8>;
+        xlnx,sck-ratio = <0x20>;
+        #address-cells = <1>;
+        #size-cells = <0>;
+    } ;
+
+  };
+};
