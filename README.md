@@ -76,6 +76,15 @@ make run
 | 0x9300_0000 - 0x93ff_ffff | Peripheral - SPI                                    |
 | 0x9400_0000 - 0x94ff_ffff | Peripheral - GPIO                                   |
 
+## Interrupt Sources
+
+| Index  | Source                      |
+| -------| --------------------------- |
+|   0    | Peripheral - Timer          |
+|   1    | Peripheral - UART           |
+|   2    | Peripheral - SPI            |
+|   3    | Peripheral - GPIO           |
+
 ## Peripheral Register Map
 
 | Offset | Name | Description   |
