@@ -15,6 +15,7 @@ git clone https://github.com/ultraembedded/riscv_soc.git --recursive
 | Name                | Contents                                            |
 | ------------------- | --------------------------------------------------- |
 | core                | RISC-V core (http://github.com/ultraembedded/riscv) |
+| fpga/arty           | Digilent Artix-7 Arty FPGA Dev Board project        |
 | soc                 | Verilog for peripherals, interconnect, etc          |
 | tb                  | System-C testbench for the project                  |
 
@@ -64,6 +65,16 @@ To run the provided test executable;
 cd tb
 make run
 ````
+
+## FPGA
+
+This project is ready to run on the 'Digilent Artix-7 Arty' FPGA dev board;
+
+![](doc/arty.png)
+
+A pre-cooked bitstream for this board is located in 'fpga/arty/top.bit'.
+
+The test project for FPGA uses the [UART to AXI dbg bridge](https://github.com/ultraembedded/cores/tree/master/dbg_bridge) to allow code to be loaded into DDR prior to de-asserting the CPU's reset.
 
 ## Size
 
