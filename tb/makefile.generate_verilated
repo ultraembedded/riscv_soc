@@ -1,0 +1,35 @@
+###############################################################################
+# Variables
+###############################################################################
+CORE             ?= core
+PARAMS           ?= 
+OUTPUT_DIR       ?= verilated
+SRC_DIR          ?= ../soc
+SRC_TYPE         ?= v
+SRC_V_DIR        ?= ../soc
+OUTPUT_SUFFIX    ?=
+SRC              ?= riscv_soc
+NAME             ?= riscv_soc
+
+RTL_INCLUDE       = ../core/core/$(CORE)
+RTL_INCLUDE      += ../soc
+
+# Verilator options
+VERILATE_PARAMS  ?= --trace
+VERILATOR_OPTS   ?= --pins-sc-uint
+
+TARGETS          ?= $(OUTPUT_DIR)/V$(NAME)
+
+###############################################################################
+# Rules
+###############################################################################
+all: $(TARGETS)
+
+$(OUTPUT_DIR):
+	mkdir -p $@
+
+$(OUTPUT_DIR)/V$(NAME): $(SRC_DIR)/$(SRC).$(SRC_TYPE) | $(OUTPUT_DIR)
+	verilator --sc $(patsubst $(OUTPUT_DIR)/V$(NAME), $(SRC_V_DIR)/$(NAME), $@) --Mdir $(OUTPUT_DIR) -I./$(SRC_V_DIR) $(patsubst %,-I%,$(RTL_INCLUDE)) $(VERILATOR_OPTS) $(VERILATE_PARAMS)
+
+clean:
+	rm -rf $(TARGETS) $(OUTPUT_DIR)
