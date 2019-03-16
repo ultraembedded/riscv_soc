@@ -202,7 +202,7 @@ module axi4_lite_tap
 `define PERIPH2_MASK         32'hff000000
 `define PERIPH3_ADDR         32'h93000000
 `define PERIPH3_MASK         32'hff000000
-`define PERIPH4_ADDR         32'h91000000
+`define PERIPH4_ADDR         32'h94000000
 `define PERIPH4_MASK         32'hff000000
 
 //-----------------------------------------------------------------
