@@ -65,6 +65,23 @@ cd tb
 make run
 ````
 
+## Size
+
+### SoC + Small Core (core/rv32i_spartan6)
+
+| Xilinx Vivado (for XC7)    | Used |
+|----------------------------|------|
+| Slice LUTs                 | 3654 |
+| Slice Registers            | 1468 |
+
+### SoC + Larger Core (core/rv32imsu)
+
+| Xilinx Vivado (for XC7)    | Used |
+|----------------------------|------|
+| Slice LUTs                 | 7046 |
+| Slice Registers            | 3170 |
+
+
 ## Memory Map
 
 | Range                     | Description                                         |
