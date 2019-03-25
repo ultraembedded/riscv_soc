@@ -224,9 +224,12 @@ bin   dev   etc   init  lib   mnt   proc  sbin  sys   test
 | 0x9000_0014 | IRQ_CIE | [W] Clear Interrupt Enable bits |
 | 0x9000_0018 | IRQ_IVR | [RW] Interrupt Vector Register |
 | 0x9000_001c | IRQ_MER | [RW] Master Enable Register |
-| 0x9100_0000 | TIMER_CTRL | [RW] Control |
-| 0x9100_0004 | TIMER_CMP | [RW] Compare value (interrupt on match) |
-| 0x9100_0008 | TIMER_VAL | [R] Current Value |
+| 0x9100_0008 | TIMER_CTRL0 | [RW] Control |
+| 0x9100_000c | TIMER_CMP0 | [RW] Compare value (interrupt on match) |
+| 0x9100_0010 | TIMER_VAL0 | [RW] Current Value |
+| 0x9100_0014 | TIMER_CTRL1 | [RW] Control |
+| 0x9100_0018 | TIMER_CMP1 | [RW] Compare value (interrupt on match) |
+| 0x9100_001c | TIMER_VAL1 | [RW] Current Value |
 | 0x9200_0000 | ULITE_RX | [R] UART Data Register |
 | 0x9200_0004 | ULITE_TX | [W] UART Data Register |
 | 0x9200_0008 | ULITE_STATUS | [R] UART Status Register |
@@ -302,19 +305,20 @@ bin   dev   etc   init  lib   mnt   proc  sbin  sys   test
 | ---- | ---- | -------------- |
 | 0 | ME | Master Enable |
 
-##### Timer Register: TIMER_CTRL
+##### Timer Register: TIMER_CTRLx
 
 | Bits | Name | Description    |
 | ---- | ---- | -------------- |
-| 0 | INTERRUPT | Interrupt enable. |
+| 1 | INTERRUPT | Interrupt enable. |
+| 2 | ENABLE | Timer enable. |
 
-##### Timer Register: TIMER_CMP
+##### Timer Register: TIMER_CMPx
 
 | Bits | Name | Description    |
 | ---- | ---- | -------------- |
 | 31:0 | VALUE | Match value. |
 
-##### Timer Register: TIMER_VAL
+##### Timer Register: TIMER_VALx
 
 | Bits | Name | Description    |
 | ---- | ---- | -------------- |
