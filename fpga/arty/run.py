@@ -26,7 +26,7 @@ def main(argv):
     print cmd
     os.system(cmd)
 
-    cmd = "%s/console.py -t %s -d %s -b %s -f %s" % (run_path, args.type, args.device, args.baud, args.filename)
+    cmd = "%s/console-uart.py -t %s -d %s -b %s -f %s" % (run_path, args.type, args.device, args.baud, args.filename)
     print cmd
     os.system(cmd)
 
